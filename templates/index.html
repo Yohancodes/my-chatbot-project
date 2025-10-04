@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div>
+        <h1>AI-Powered Customer Support Chatbot</h1>
+        <div id="chatbox"></div>
+
+        <div style="display: flex; align-items: center;">
+            <input type="text" id="userMessage" placeholder="Type your message here...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const userMessage = document.getElementById('userMessage').value;
+            if (!userMessage) return;
+
+            const chatbox = document.getElementById('chatbox');
+            chatbox.innerHTML += `<div class="user-message">${userMessage}</div>`;
+
+            const response = await fetch('/chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ Body: userMessage })
+            });
+
+            const data = await response.json();
+            chatbox.innerHTML += `<div class="bot-message">${data.reply}</div>`;
+            document.getElementById('userMessage').value = '';
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        document.getElementById('userMessage').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ece5dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #075e54;
+}
+
+#chatbox {
+    width: 400px;
+    height: 500px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    padding: 10px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* User bubble (green, right side) */
+.user-message {
+    background: #dcf8c6;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 12px 12px 0 12px;
+    max-width: 70%;
+    align-self: flex-end;
+    margin: 5px 0;
+    word-wrap: break-word;
+}
+
+/* Bot bubble (grey, left side) */
+.bot-message {
+    background: #f1f0f0;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 12px 12px 12px 0;
+    max-width: 70%;
+    align-self: flex-start;
+    margin: 5px 0;
+    word-wrap: break-word;
+}
+
+/* Input area */
+input[type="text"] {
+    width: 320px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-right: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50%;
+    background: #075e54;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #128c7e;
+}
